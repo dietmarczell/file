@@ -11,7 +11,7 @@ import java.io.OutputStream;
 
 public class FileDemo {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		// TODO Auto-generated method stub
 
 		File dir = new File("D:\\temp\\testfile.txt");		// Filename definieren
@@ -26,14 +26,22 @@ public class FileDemo {
 		
 		System.out.println(dir.isFile() + " , " + dir.getPath() + " " + dir.canWrite() + " " + dir.canRead() + " " + dir.exists() + " " + dir.length());
 		
+		
+		
 		FileInputStream fis = new FileInputStream(dir);			// File lesen
+		
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		
+		String input = (String) ois.readObject();
+		System.out.print(input);
+		/*
 		//FileInputStream fis = new FileInputStream(System.in);
 		int byteRead;
 		//while ( (byteRead = System.in.read()) != -1) {			// Input Console lesen / -1 ist für Abbruch wenn das Ende des Strings erreicht ist
 		while ( (byteRead = fis.read()) != -1) {
 		char[] ch = Character.toChars(byteRead);
 			System.out.print(ch[0]);
-		}
+		}*/
 		fis.close();	// File schließen!
 		
 		
