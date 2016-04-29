@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 public class TextDemo {
 
@@ -25,6 +29,68 @@ public class TextDemo {
 		}
 		
 		bur.close();
+		
+		
+		File dir2 = new File("D:\\temp\\demo.csv");		// Filename definieren
+		
+		FileReader fir2 = new FileReader(dir2);
+		BufferedReader bur2 = new BufferedReader(fir2);
+		
+		// Splitten von einer cvs-Datei aufgrund des Seperators
+		
+		String line2;
+		while ( (line2 = bur2.readLine()) != null )
+		{
+			/*
+			String ausgabe = "";
+			for (int i = 0; i < line2.length(); i++) {
+				if (line2.charAt(i) == ';' ) {
+					System.out.println(ausgabe);
+					ausgabe = "";
+				}
+				else
+				{
+					ausgabe = ausgabe + line2.charAt(i);
+				}
+			}
+			System.out.println(ausgabe);
+		*/	
+			String[] parts = line2.split(";");
+			for (int i = 0; i < parts.length; i++) {
+				String string = parts[i];
+				System.out.println(string);
+			}	
+		}
+		bur.close();
+		
+		// Noten aus dem Input von der Konsole schreiben - mit stop wird angehalten
+		File noten = new File("D:\\temp\\noten.txt");
+		
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader bufrea = new BufferedReader(isr);
+		
+		String line3;
+		FileWriter fw = new FileWriter(noten);
+		PrintWriter pw = new PrintWriter(fw);
+		while ( !(line3 = bufrea.readLine()).equals("stop"))
+		{
+			pw.println(line3);
+		}
+		pw.flush();
+		pw.close();
+		
+		
+		// Textfile erweitern z.b. für logfile lässig - vor allem das append ist wichtig - das hängt die zeilen dazu statt zu ersetzen!
+		File f = new File("D:\\temp\\printout.txt");		
+		
+		FileWriter fw2 = new FileWriter(f,true);
+		PrintWriter pw2 = new PrintWriter(fw2);
+		
+		pw2.println("First Line");
+		pw2.println("Second Line");
+		
+		pw2.flush();
+		pw2.close();
 	}
 
 }
