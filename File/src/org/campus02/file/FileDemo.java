@@ -42,6 +42,8 @@ public class FileDemo {
 		char[] ch = Character.toChars(byteRead);
 			System.out.print(ch[0]);
 		}*/
+
+
 		fis.close();	// File schlieﬂen!
 		
 		
