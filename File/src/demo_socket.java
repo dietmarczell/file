@@ -26,6 +26,7 @@ public class demo_socket {
 			}
 			buwr.close();
 			bure.close();
+			test.close();
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
