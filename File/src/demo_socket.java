@@ -25,9 +25,6 @@ public class demo_socket {
 			while (( line = bure.readLine()) != null) {													// Zeilenweise auslesen
 				System.out.println(line);
 			}
-			buwr.close();
-			bure.close();
-			test.close();
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
